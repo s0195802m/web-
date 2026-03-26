@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2>Задание 1.</h2>
+        </div>
+    </header>
+
+    <main class="container">
+        
+       
+        <section class="task">
+            <h3>✅ 1. Подключение к серверу по SSH</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> С помощью клиента PuTTY (или терминала) устанавливается SSH-соединение с сервером <code>kubsu-dev.ru</code> по логину <code>u82461</code>. После успешной аутентификации отображается приветственное сообщение Ubuntu и приглашение командной строки. На скриншотах показан процесс настройки PuTTY (ввод адреса сервера, выбор порта SSH) и результат входа в систему.</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="0.jpg" alt="Настройка PuTTY для подключения к kubsu-dev.ru">
+                    <figcaption>Настройка PuTTY: в поле Host Name указан адрес <code>kubsu-dev.ru</code>, тип соединения — SSH.</figcaption>
+                </figure>
+                <figure>
+                    <img src="1.png" alt="Успешный вход по SSH в систему">
+                    <figcaption>После ввода пароля отображается приветствие Ubuntu и командная строка пользователя <code>u82461@web-server:~$</code>.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+       
+        <section class="task">
+            <h3>✅ 2. Определение IP-адреса kubsu.ru с помощью ping</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> Команда <code>ping -c 4 kubsu.ru</code> отправляет 4 ICMP-пакета на сервер kubsu.ru. В ответе виден IP-адрес <code>185.13.84.92</code>, а также статистика времени отклика. Скриншот демонстрирует успешные пинги и нулевую потерю пакетов.</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="2.png" alt="Результат выполнения ping для kubsu.ru">
+                    <figcaption>IP-адрес kubsu.ru: <code>185.13.84.92</code>. Время отклика ~1 мс.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        
+        <section class="task">
+            <h3>✅ 3. A-записи и MX-записи доменов (nslookup)</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> Утилита <code>nslookup</code> используется для получения DNS-записей. Для домена <strong>kubsu.ru</strong> получены A-запись (IP) и MX-записи (почтовые серверы). Для домена <strong>kubsu-dev.ru</strong> также получена A-запись, а MX-записи отсутствуют (запись не найдена, но есть SOA-информация).</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="3.png" alt="A-запись kubsu.ru">
+                    <figcaption>A-запись kubsu.ru: <code>185.13.84.92</code>.</figcaption>
+                </figure>
+                <figure>
+                    <img src="4.png" alt="MX-записи kubsu.ru">
+                    <figcaption>MX-записи kubsu.ru: приоритет 10 → mx2.kubannet.ru, 20 → mx.kubannet.ru, 50 → mx.kubsu.ru.</figcaption>
+                </figure>
+                <figure>
+                    <img src="5.png" alt="A-запись kubsu-dev.ru">
+                    <figcaption>A-запись kubsu-dev.ru: <code>212.192.134.135</code>.</figcaption>
+                </figure>
+                <figure>
+                    <img src="6.png" alt="MX-записи kubsu-dev.ru">
+                    <figcaption>MX-записи для kubsu-dev.ru отсутствуют (No answer), но показана SOA-запись с информацией о DNS-сервере.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        
+        <section class="task">
+            <h3>✅ 4. Дата регистрации доменов
+                (whois)</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> Команда <code>whois</code> отображает информацию о регистрации домена. Для <strong>kubsu.ru</strong> дата создания — <code>1998-03-28</code>, оплачено до <code>2026-04-30</code>. Для <strong>kubsu-dev.ru</strong> дата регистрации — <code>2020-02-12</code>, оплачено до <code>2027-02-12</code>. Также видны NS-серверы и контактные данные.</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="7.png" alt="whois для kubsu.ru">
+                    <figcaption>Информация о домене kubsu.ru: создан в 1998, принадлежит Кубанскому государственному университету.</figcaption>
+                </figure>
+                <figure>
+                    <img src="8.png" alt="whois для kubsu-dev.ru">
+                    <figcaption>Домен kubsu-dev.ru зарегистрирован в 2020, владелец — частное лицо.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        
+        <section class="task">
+            <h3>✅ 5. Создание веб-страницы, работа с Git и размещение на сервере</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> На локальной машине инициализирован Git-репозиторий, добавлены все скриншоты (1–9.png) и сделан коммит. Создан аккаунт на GitHub, добавлен SSH-ключ для безопасного доступа. Затем репозиторий склонирован на учебный сервер, файлы скопированы в каталог <code>~/www/hw1</code>, что обеспечивает доступность страницы по адресу <code>http://u82461.kubsu-dev.ru/hw1/</code&gt;. На скриншотах зафиксированы этапы: инициализация Git, создание SSH-ключа, добавление ключа на GitHub, клонирование и копирование файлов.</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="9.png" alt="Список файлов PNG перед коммитом">
+                    <figcaption>Исходные файлы скриншотов (1–9.png) на локальном компьютере.</figcaption>
+                </figure>
+                <figure>
+                    <img src="10.png" alt="Git init, add, commit, push">
+                    <figcaption>Инициализация Git, добавление файлов, коммит и отправка на удалённый репозиторий GitHub.</figcaption>
+                </figure>
+                <figure>
+                    <img src="11.png" alt="Генерация SSH-ключа на сервере">
+                    <figcaption>Генерация пары SSH-ключей (ed25519) на сервере для аутентификации в GitHub.</figcaption>
+                </figure>
+                 <figure>
+                    <img src="112.png" alt="Просмотр публичного SSH-ключа на сервере">
+                    <figcaption>Дополнительно: содержимое публичного ключа <code>id_ed25519.pub</code>, использованного для GitHub.</figcaption>
+                </figure>
+                <figure>
+                    <img src="12.png" alt="Добавление SSH-ключа в GitHub">
+                    <figcaption>Публичный ключ добавлен в личный аккаунт GitHub (раздел SSH and GPG keys).</figcaption>
+                </figure>
+                
+                <figure>
+                    <img src="13.png" alt="Клонирование репозитория на сервер и копирование файлов в www">
+                    <figcaption>Клонирование репозитория через SSH (<code>git clone git@github.com:...</code>), создание каталога <code>~/www/hw1</code> и копирование файлов скриншотов.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        
+        <section class="task">
+            <h3>✅ 6. Скачивание файлов с сервера через SFTP (FileZilla)</h3>
+            <div class="task-description">
+                <p><strong>Что происходит:</strong> С помощью SFTP-клиента FileZilla установлено соединение с сервером <code>kubsu-dev.ru</code> по порту <code>58528</code> (как указано в задании). После успешной аутентификации из удалённого каталога <code>/home/u82461/www/hw1</code> на локальный компьютер были скопированы все файлы задания. На скриншотах показан
+                    процесс подключения, отображение удалённого каталога и результат успешной передачи файлов.</p>
+            </div>
+            <div class="screenshots">
+                <figure>
+                    <img src="14.png" alt="Подключение в FileZilla к серверу">
+                    <figcaption>Настройка подключения: хост <code>kubsu-dev.ru</code>, порт 58528, имя пользователя u82461.</figcaption>
+                </figure>
+                <figure>
+                    <img src="15.png" alt="Просмотр удалённой директории www/hw1">
+                    <figcaption>Удалённый каталог <code>/home/u82461/www/hw1/</code> содержит файлы 1.png … 9.png.</figcaption>
+                </figure>
+                <figure>
+                    <img src="16.png" alt="Скачивание файлов из каталога hw1">
+                    <figcaption>Процесс скачивания: файлы успешно переданы, общий размер ~170 КБ.</figcaption>
+                </figure>
+                <figure>
+                    <img src="17.png" alt="Добавление новых скриншотов в Git после скачивания">
+                    <figcaption>После получения файлов (10–16.png) они добавлены в Git и отправлены в репозиторий.</figcaption>
+                </figure>
+                  <figure>
+            <img src="2026-03-27.png" alt="Обновление репозитория на сервере через git pull">
+            <figcaption>После добавления новых файлов (index.html, style.css и скриншотов 10–16.png) в GitHub, на сервере выполнен <code>git pull</code> для получения актуальной версии. Затем файлы скопированы в <code>~/www/hw1</code> для обновления сайта.
+            </figcaption>
+               </figure>
+            </div>
+        </section>
+
+        
+       
+    </main>
+
+   
+</body>
+</html>
